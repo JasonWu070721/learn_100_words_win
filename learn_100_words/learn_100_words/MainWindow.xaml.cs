@@ -28,9 +28,6 @@ namespace learn_100_words
         {
             this.InitializeComponent();
         }
-
-
-
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
             // you can also add items in code behind
@@ -41,12 +38,15 @@ namespace learn_100_words
             // set the initial SelectedItem 
             foreach (NavigationViewItemBase item in NavView.MenuItems)
             {
+                System.Diagnostics.Debug.WriteLine("[DEBUG]: set the initial SelectedItem ");
                 if (item is NavigationViewItem && item.Tag.ToString() == "home")
                 {
+                    System.Diagnostics.Debug.WriteLine("[DEBUG]: item.Tag.ToString(): " + item.Tag.ToString());
                     NavView.SelectedItem = item;
                     break;
                 }
             }
+            ContentFrame.Navigate(typeof(HomePage));
         }
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -68,6 +68,7 @@ namespace learn_100_words
             switch (item.Tag)
             {
                 case "home":
+                    System.Diagnostics.Debug.WriteLine("[DEBUG]: HomePage");
                     ContentFrame.Navigate(typeof(HomePage));
                     break;
 
