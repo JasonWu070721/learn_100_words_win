@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="learn_100_words.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:learn_100_words"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="White" Width="Auto" Height="Auto" ColumnSpacing="0" RowSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+            <TextBlock Name="SingleWord" Text="SingleWord"/>
+            <TextBlock Name="PhoneticSymbols" Text="PhoneticSymbols"/>
+            <TextBlock Name="ExampleSentences" Text="ExampleSentences"/>
+            <TextBox Name="WordExercise" Header="Enter your name:" PlaceholderText="Name" />
+            <Button Name="WordExerciseButton" Content="Standard XAML button" Click="Check_Word_Click" />
+
+            <TextBlock Name="VerifyWordStatus" Text="VerifyWordStatus"/>
+
+            <Button Name="AcceptButton">
+                <StackPanel>
+                    <SymbolIcon Symbol="Accept"/>
+                    <TextBlock Text="Accept"/>
+                </StackPanel>
+            </Button>
+            <!--<Rectangle Fill="Red" />-->
+        </StackPanel>
+
+        <StackPanel  Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+
+
+            <Button Name="PrevWorkButton" Content="PrevWorkButton" />
+            <Button Name="NextWorkButton" Content="NextWorkButton" />
+        </StackPanel>
+
+        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+            <ListView x:Name="ContactsLV" ItemsSource="{x:Bind Contacts}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Contact">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Grid.RowSpan="2" Source="Assets/grey-placeholder.png" Width="32"
+                            Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock Grid.Column="1" Text="{x:Bind Name}" Margin="12,6,0,0"
+                            Style="{ThemeResource BaseTextBlockStyle}"/>
+                            <TextBlock  Grid.Column="1" Grid.Row="1" Text="{x:Bind Company}" Margin="12,0,0,6"
+                            Style="{ThemeResource BodyTextBlockStyle}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+
+</Page>
